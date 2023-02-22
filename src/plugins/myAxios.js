@@ -9,9 +9,9 @@ import {useRouter} from "vue-router";
 
 //npm i --save-dev @types/node 安装类型库
 const isDev =process.env.NODE_ENV ==='development';
-// baseURL: isDev? 'http://localhost:8080/api':'http://XXX:8080/api',
+// baseURL: isDev? 'http://localhost:8080/api':'http://123.123.123.123:8080/api',
 const myAxios = axios.create({
-    baseURL: isDev? 'http://localhost:8080/api':'http://120.24.245.241:8080/api',
+    baseURL: isDev? 'http://localhost:8080/api':'http://123.123.123.123:8080/api',
     paramsSerializer: {
         serialize:function(params) {
             return Qs.stringify(params, { arrayFormat: 'repeat' })
