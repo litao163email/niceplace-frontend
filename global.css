@@ -1,0 +1,16 @@
+/**
+  先去前端调好样式再复制过来！
+ */
+
+/**
+ * 添加按钮的样式
+ */
+.add-button{
+    position: fixed;
+    bottom: 60px;
+    width: 50px;
+    right: 12px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 5;
+}

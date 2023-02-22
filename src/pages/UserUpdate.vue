@@ -1,0 +1,54 @@
+<template>
+  <div id="userInfo" v-if="user" style="position: absolute; left: 0px; top: 40px; right: 0px;">
+  <van-cell title="用户名" is-link to="/user/edit" :value="user.username" @click="doEdit('username','用户名',user.username)" />
+  <van-cell title="账号" is-link to="/user/edit" :value="user.userAccount" />
+  <van-cell title="头像" is-link to="/user/edit" arrow-direction="down" >
+    <img style="height: 48px" :src="user.avatarUrl">
+  </van-cell>
+  <van-cell title="性别" is-link to="/user/edit" arrow-direction="down" :value="user.gender" @click="doEdit('gender','性别',user.gender)" />
+  <van-cell title="电话" is-link to="/user/edit" arrow-direction="down" :value="user.phone"  @click="doEdit('phone','电话',user.phone)" />
+  <van-cell title="邮箱" is-link to="/user/edit" arrow-direction="down" :value="user.email"  @click="doEdit('email','邮箱',user.email)" />
+  <van-cell title="星球编号"  :value="user.planetCode"  />
+
+
+  </div>
+</template>
+
+<script setup lang="ts">
+
+import {useRouter} from "vue-router";
+import {onMounted, ref} from "vue";
+import myAxios from "../plugins/myAxios.js";
+import {showFailToast, showSuccessToast} from "vant";
+import {getCurrentUser} from "../services/user.js";
+
+//模拟数据
+// const user={
+//     id: 1,
+//     username: "桃李",
+//     userAccount: "taoli",
+//     avatarUrl: "",
+//     gender: "男",
+//     phone: "123456789",
+//     email: "123456@qq.com",
+//     planetCode: "123456",
+//     createTime: new Date(),
+// }
+
+const user=ref();
+
+const router = useRouter();
+const doEdit=(key:String,name:String,value:String)=>{
+  router.push({path:'/user/edit',query:{ key,name,value}});
+}
+
+//获取当前用户信息(后端会根据cookie获取)
+onMounted(async ()=>{
+  user.value = await getCurrentUser();
+})
+
+</script>
+
+<style scoped>
+
+</style>
