@@ -8,6 +8,7 @@
       <van-tab title="公开" name="public" />
       <van-tab title="加密" name="private"/>
     </van-tabs>
+    <!--  添加队伍  -->
     <van-button class="add-button" icon="plus" type="primary" @click="doAddTeam"/>
     <van-card
         v-for="team in userList"
@@ -15,6 +16,7 @@
         :thumb="team.avatarUrl"
         :desc="team.description"
         :tag="team.status"
+        @click-thumb="doVideo(team.avatarUrl)"
     >
       <template #tags>
         <!-- 标签-->
@@ -60,6 +62,21 @@ import {onMounted, ref} from "vue";
 import myAxios from "../plugins/myAxios.js";
 import {showDialog, showFailToast, showSuccessToast} from "vant";
 import {getCurrentUser} from "../services/user.js";
+const router = useRouter();
+
+/**
+ * 点击图片播放视频
+ */
+const doVideo=(url)=>{
+  //跳转
+  router.push({
+    path:"/video",
+    query:{
+      url:url
+    }
+  })
+}
+
 
 /**
  * 加入团队-密码弹出框
@@ -104,9 +121,6 @@ const onTabChange=(name)=>{
   }
 }
 
-
-
-const router = useRouter();
 
 //mission1:点击事件,跳转去队伍team添加页面------------------------------------------------------------------
 const doAddTeam=()=>{

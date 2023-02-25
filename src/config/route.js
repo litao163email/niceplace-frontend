@@ -12,11 +12,13 @@ import TeamUpdate from "../pages/TeamUpdate.vue";
 import UserTeamCreate from "../pages/UserTeamCreate.vue";
 import UserTeamJoin from "../pages/UserTeamJoin.vue";
 import UserRegister from "../pages/UserRegister.vue";
+import Video from "../pages/Video.vue";
 
 const routes = [
     { path: '/team', title:'队伍列表',component: Team },
     { path: '/team/add',title:'添加队伍', component:TeamAdd },
     { path: '/team/update',title:'更新队伍', component:TeamUpdate },
+    { path: '/video', title:'队伍列表',component: Video },
     { path: '/', title:'首页',component: Index },
     { path: '/user',title:'个人', component: User },
     { path: '/search', title:'找队伍',component: Search},

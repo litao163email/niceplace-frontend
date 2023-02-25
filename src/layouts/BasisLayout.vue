@@ -57,7 +57,9 @@ const DEFAULT_TITLE='伙伴匹配';
 const title=ref(DEFAULT_TITLE);
 
 router.beforeEach((to,from)=>{
+  //或者将要去的路径path
   const  toPath=to.path;
+  //判断topath是否等于路由中含有的路径，有则返回路由对象
   const route=routes.find((route)=>{
     return toPath === route.path;
   })

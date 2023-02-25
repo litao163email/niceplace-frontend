@@ -49,13 +49,16 @@ const onSubmit = async (values) => {
     //userAccount从上面接收后，作为传去后端的参数。key是参数名，value是值
     userAccount:userAccount.value,
     userPassword:userPassword.value,
-  });
-  console.log(axiosResponse);
-  if (axiosResponse){
+
+  },{withCredentials:true});
+  console.log("登录返回:"+axiosResponse);
+  if (axiosResponse.data !== null){
     showSuccessToast("登录成功");
     console.log("跳转去原用户已在页面")
-    router.back();
+    router.go(-1);
 
+  }else {
+    console.log("用户信息为空,登录失败")
   }
 };
 
