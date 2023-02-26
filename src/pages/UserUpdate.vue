@@ -5,10 +5,11 @@
   <van-cell title="头像" is-link to="/user/edit" arrow-direction="down" >
     <img style="height: 48px" :src="user.avatarUrl">
   </van-cell>
-  <van-cell title="性别" is-link to="/user/edit" arrow-direction="down" :value="user.gender" @click="doEdit('gender','性别',user.gender)" />
+  <van-cell title="性别" is-link to="/user/edit" arrow-direction="down" :value="user.gender === 0 ? '男':'女'" @click="doEdit('gender','性别',user.gender)" />
   <van-cell title="电话" is-link to="/user/edit" arrow-direction="down" :value="user.phone"  @click="doEdit('phone','电话',user.phone)" />
   <van-cell title="邮箱" is-link to="/user/edit" arrow-direction="down" :value="user.email"  @click="doEdit('email','邮箱',user.email)" />
-  <van-cell title="星球编号"  :value="user.planetCode"  />
+   <van-cell title="标签" is-link to="/user/edit" arrow-direction="down" :value="user.tags"  @click="doEdit('tags','标签',user.tags)" />
+  <van-cell title="幸运编号"  :value="user.planetCode"  />
 
 
   </div>
@@ -19,9 +20,10 @@
 import {useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
 import myAxios from "../plugins/myAxios.js";
-import {showFailToast, showSuccessToast} from "vant";
+import {showConfirmDialog, showFailToast, showSuccessToast} from "vant";
 import {getCurrentUser} from "../services/user.js";
-
+const user=ref();
+const router = useRouter();
 //模拟数据
 // const user={
 //     id: 1,
@@ -35,9 +37,9 @@ import {getCurrentUser} from "../services/user.js";
 //     createTime: new Date(),
 // }
 
-const user=ref();
-
-const router = useRouter();
+/**
+ * 修改信息
+ */
 const doEdit=(key:String,name:String,value:String)=>{
   router.push({path:'/user/edit',query:{ key,name,value}});
 }

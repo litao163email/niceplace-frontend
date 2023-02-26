@@ -37,7 +37,7 @@
       </template>
     </van-card>
 
-    <van-empty v-if="userList.length<0" description="搜索结果为空" />
+    <van-empty v-if="userList.length<=0" description="搜索结果为空" />
   </div>
 
 </template>

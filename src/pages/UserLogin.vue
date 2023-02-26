@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import {ref, watchEffect} from "vue";
 import myAxios from "../plugins/myAxios.js";
 import {useRoute, useRouter} from "vue-router";
 import { showSuccessToast, showFailToast } from 'vant';
@@ -55,17 +55,14 @@ const onSubmit = async (values) => {
   if (axiosResponse.data !== null){
     showSuccessToast("登录成功");
     console.log("跳转去原用户已在页面")
-    router.go(-1);
+    router.back();
 
   }else {
     console.log("用户信息为空,登录失败")
   }
 };
 
-/**
- * 注册
- */
-// const doRegister = router.push("/user/register");
+
 
 
 </script>

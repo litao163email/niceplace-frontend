@@ -4,7 +4,7 @@
 
     <van-cell center title="心动模式">
       <template #right-icon>
-        <van-switch v-model="isMatchMode" />
+        <van-switch  v-model="isMatchMode"  />
       </template>
     </van-cell>
 
@@ -22,25 +22,42 @@
       </template>
 
       <template #footer>
-        <van-button size="mini">联系我</van-button>
+        <van-button size="mini" @click="goVideo(user.id)">精彩视频</van-button>
       </template>
     </van-card>
     </van-skeleton>
 
-    <van-empty v-if="userList.length<0" description="推荐结果为空" />
+    <van-empty v-if="userList.length<=0" description="推荐结果为空" />
   </div>
 
 </template>
 
 <script setup>
 
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref, watchEffect} from "vue";
 import myAxios from "../plugins/myAxios.js";
 import { showSuccessToast, showFailToast } from 'vant';
+import {getCurrentUser} from "../services/user.js";
+const router = useRouter();
 
 const isMatchMode=ref(true);
 const isSkeleton=ref(true);
+
+
+/**
+ * 去视频页面
+ */
+const goVideo=(id)=>{
+  //离开页面前把心动模式的值存入localStorage
+  //保存缓存
+  console.log("保存页面缓存")
+  // localStorage.setItem("isMatchMode",isMatchMode.value)
+  //主页面传入用户id
+  router.push({path:"/videoResult",query:{
+      id:id,
+    }});
+}
 
 //用户列表
 const userList = ref([]);
@@ -108,7 +125,17 @@ const loadData =(async () => {
  * watchEffect
  */
 watchEffect(() => {
+  //返回时恢复原来的模式
+  // const item =  localStorage.getItem("isMatchMode");
+  // if (item){
+  //   console.log("获取页面缓存"+item)
+  //   isMatchMode.value=item;
+  //   //删除缓存
+  //   console.log("删除页面缓存")
+  //   localStorage.removeItem("isMatchMode")
+  // }
   loadData();
+
 })
 
 

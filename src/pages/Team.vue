@@ -16,7 +16,7 @@
         :thumb="team.avatarUrl"
         :desc="team.description"
         :tag="team.status"
-        @click-thumb="doVideo(team.avatarUrl)"
+        @click-thumb="goVideo(team.id)"
     >
       <template #tags>
         <!-- 标签-->
@@ -51,7 +51,7 @@
       <van-field v-model="passWord" placeholder="请输入密码" />
     </van-dialog>
 
-    <van-empty v-if="userList.length<0" description="搜索结果为空" />
+    <van-empty v-if="userList.length<=0" description="搜索结果为空" />
   </div>
 
 </template>
@@ -64,17 +64,26 @@ import {showDialog, showFailToast, showSuccessToast} from "vant";
 import {getCurrentUser} from "../services/user.js";
 const router = useRouter();
 
+// /** （作废的测试用例）
+//  * 点击图片播放视频
+//  */
+// const doVideo=(url)=>{
+//   //跳转
+//   router.push({
+//     path:"/video",
+//     query:{
+//       url:url
+//     }
+//   })
+// }
+
 /**
- * 点击图片播放视频
+ * 去视频页面
  */
-const doVideo=(url)=>{
-  //跳转
-  router.push({
-    path:"/video",
-    query:{
-      url:url
-    }
-  })
+const goVideo=(teamId)=>{
+  router.push({path:"/videoResult",query:{
+    teamId
+    }});
 }
 
 

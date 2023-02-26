@@ -48,21 +48,62 @@
 import {ref} from 'vue';
 import {useRouter} from "vue-router";
 
+/**
+ * 标签应尽量地少,暂时写死
+ */
 const OriginTagList = [
   {
-    text: '浙江',
+    text: '美女',
     children: [
-      {text: '杭州', id: '杭州'},
-      {text: '温州', id: '温州'},
-      {text: '宁波', id:'宁波', disabled: true},
+      {text: '美女', id: '美女'},
+      {text: '性感', id: '性感'},
+      {text: '清纯', id: '清纯'},
+      {text: '可爱', id:'可爱'},
     ],
   },
   {
-    text: '江苏',
+    text: '风景',
     children: [
-      {text: '南京', id: '南京'},
-      {text: '无锡', id: '无锡'},
-      {text: '徐州', id: '徐州'},
+      {text: '风景', id: '风景'},
+      {text: '海洋', id: '海洋'},
+      {text: '山峰', id: '山峰'},
+      {text: '深林', id: '深林'},
+    ],
+  },
+  {
+    text: '美食',
+    children: [
+      {text: '美食', id: '美食'},
+      {text: '中餐', id: '中餐'},
+      {text: '西餐', id: '西餐'},
+      {text: '学做菜', id: '学做菜'},
+    ],
+  },
+  {
+    text: '电影',
+    children: [
+      {text: '电影', id: '电影'},
+      {text: '喜剧', id: '喜剧'},
+      {text: '动作', id: '动作'},
+      {text: '悬疑', id: '悬疑'},
+    ],
+  },
+  {
+    text: '搞笑',
+    children: [
+      {text: '搞笑', id: '搞笑'},
+      {text: '段子', id: '段子'},
+      {text: '沙雕', id: '沙雕'},
+      {text: '配音', id: '配音'},
+    ],
+  },
+  {
+    text: '生活',
+    children: [
+      {text: '生活', id: '生活'},
+      {text: '爱情', id: '爱情'},
+      {text: '金钱', id: '金钱'},
+      {text: '进步', id: '进步'},
     ],
   }
 ];
@@ -107,7 +148,10 @@ const activeIds = ref([]);
 const activeIndex = ref(0);
 
 const router = useRouter();
-//搜索
+
+/**
+ * 搜索
+ */
 const doSearchResult=()=>{
   //执行搜索后就跳转去结果页，将query赋在url上
   router.push({

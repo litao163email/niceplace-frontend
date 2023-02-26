@@ -2,7 +2,7 @@
   <van-form @submit="onSubmit">
     <van-cell-group inset>
       <van-field
-          v-model="planetCode"
+          v-model="niceCode"
           name="planetCode"
           label="幸运号码"
           placeholder="幸运号码"
@@ -21,7 +21,7 @@
           name="userPassword"
           label="密码"
           placeholder="密码"
-          :rules="[{ required: true, message: '请填写密码' }]"
+          :rules="[{ required: true, message: '请填写至少8位密码' }]"
       />
       <van-field
           v-model="checkPassword"
@@ -50,7 +50,7 @@ import { showSuccessToast, showFailToast } from 'vant';
 const router = useRouter();
 const route = useRoute();
 
-const planetCode = ref('');
+const niceCode = ref('');
 const userAccount = ref('');
 const userPassword = ref('');
 const checkPassword = ref('');
@@ -58,18 +58,17 @@ const checkPassword = ref('');
 const onSubmit = async (values) => {
   const axiosResponse = await myAxios.post("/user/register",{
     //userAccount从上面接收后，作为传去后端的参数。key是参数名，value是值
-    planetCode:planetCode.value,
+    niceCode:niceCode.value,
     userAccount:userAccount.value,
     userPassword:userPassword.value,
     checkPassword:checkPassword.value,
   });
   console.log(axiosResponse);
-  if (axiosResponse){
-    showSuccessToast("注册成功");
-    console.log("跳转去原用户已在页面")
-    router.back();
-
+  if (axiosResponse.code !==200){
+    showSuccessToast(axiosResponse.description);
   }
+
+  router.back();
 };
 
 </script>

@@ -6,7 +6,7 @@
           v-model="userEdit.value"
           :name="userEdit.key"
           :label="userEdit.name"
-          placeholder="请输入${userEdit.name}"
+          placeholder="请输入:"
       />
     </van-cell-group>
     <div style="margin: 16px;">
