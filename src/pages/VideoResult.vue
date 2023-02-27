@@ -60,17 +60,20 @@ const quit = () => {
  * 点击图片播放视频
  */
 const doVideo=(url)=>{
+  const urlList=userList.value;
   //跳转
   router.push({
     path:"/video",
     query:{
-      url:url
+      url:url,
+      urlList:JSON.stringify(urlList)
     }
   })
 }
 
 //用户列表
 const userList = ref([]);
+
 
 //onMounted是vue3钩子方法，在dom元素加载后先执行的函数！
 /**

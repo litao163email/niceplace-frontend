@@ -82,11 +82,13 @@ const quit = () => {
  * 点击图片播放视频
  */
 const doVideo=(url)=>{
+  const urlList=userList.value;
   //跳转
   router.push({
     path:"/video",
     query:{
-      url:url
+      url:url,
+      urlList:JSON.stringify(urlList)
     }
   })
 }

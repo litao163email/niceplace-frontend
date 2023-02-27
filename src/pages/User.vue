@@ -63,7 +63,7 @@ const doEditTags=(key:String,name:String,value:String)=>{
 const user=ref();
 
 /**
- * 审核视频(管理员)
+ * 审核视频提示(管理员)
  */
 const reviewVideo=()=>{
   showConfirmDialog({
