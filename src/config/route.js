@@ -27,7 +27,7 @@ const routes = [
     { path: '/', title:'视频达人',component: Index },
     { path: '/user',title:'个人', component: User },
     { path: '/search', title:'找达人',component: Search},
-    { path: '/user/edit',title:'编辑', component: UserEdit},
+    { path: '/user/edit',title:'编辑个人信息', component: UserEdit},
     { path: '/search/result', title:'团队',component: SearchResult},
     { path: '/user/UserUpdate', title:'更新信息',component: UserUpdate },
     { path: '/user/team/create', title:'增加团队',component: UserTeamCreate },

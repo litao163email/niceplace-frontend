@@ -60,7 +60,8 @@ const onSubmit = async (values) => {
     showSuccessToast('成功');
     router.back();
   } else {
-    showFailToast('失败');
+    console.log(res.message)
+    showFailToast('失败:'+res.message);
   }
 
 };

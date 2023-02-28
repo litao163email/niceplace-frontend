@@ -34,7 +34,7 @@
           v-model="videoStatus"
           name="videoStatus"
           label="视频状态"
-          placeholder="012345"
+          placeholder="012345(若填需管理员权限)"
           :rules="[{ required: true, message: '视频状态' }]"
       />
       <van-field

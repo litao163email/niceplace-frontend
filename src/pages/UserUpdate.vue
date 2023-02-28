@@ -1,15 +1,15 @@
 <template>
   <div id="userInfo" v-if="user" style="position: absolute; left: 0px; top: 40px; right: 0px;">
-  <van-cell title="用户名" is-link to="/user/edit" :value="user.username" @click="doEdit('username','用户名',user.username)" />
-  <van-cell title="账号" is-link to="/user/edit" :value="user.userAccount" />
-  <van-cell title="头像" is-link to="/user/edit" arrow-direction="down" >
+  <van-cell title="用户名" size="large" is-link to="/user/edit" :value="user.username" @click="doEdit('username','用户名',user.username)" />
+  <van-cell title="账号" size="large"  :value="user.userAccount" />
+  <van-cell title="头像" size="large" is-link to="/user/edit" label="更新照片url" arrow-direction="down" >
     <img style="height: 48px" :src="user.avatarUrl">
   </van-cell>
-  <van-cell title="性别" is-link to="/user/edit" arrow-direction="down" :value="user.gender === 0 ? '男':'女'" @click="doEdit('gender','性别',user.gender)" />
-  <van-cell title="电话" is-link to="/user/edit" arrow-direction="down" :value="user.phone"  @click="doEdit('phone','电话',user.phone)" />
-  <van-cell title="邮箱" is-link to="/user/edit" arrow-direction="down" :value="user.email"  @click="doEdit('email','邮箱',user.email)" />
-   <van-cell title="标签" is-link to="/user/edit" arrow-direction="down" :value="user.tags"  @click="doEdit('tags','标签',user.tags)" />
-  <van-cell title="幸运编号"  :value="user.planetCode"  />
+  <van-cell size="large" title="性别" label="0男1女" is-link to="/user/edit" arrow-direction="down" :value="user.gender === 0 ? '男':'女'" @click="doEdit('gender','性别',user.gender)" />
+<!--  <van-cell size="large" title="电话" is-link to="/user/edit" arrow-direction="down" :value="user.phone"  @click="doEdit('phone','电话',user.phone)" />-->
+<!--  <van-cell size="large" title="邮箱" is-link to="/user/edit" arrow-direction="down" :value="user.email"  @click="doEdit('email','邮箱',user.email)" />-->
+   <van-cell size="large" title="标签" label="填与搜索栏一致的标签将提高匹配度" is-link to="/user/edit" arrow-direction="down" :value="user.tags"  @click="doEdit('tags','标签',user.tags)" />
+<!--  <van-cell size="large" title="幸运编号"  :value="user.niceCode"  />-->
 
 
   </div>

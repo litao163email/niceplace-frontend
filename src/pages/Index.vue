@@ -1,8 +1,15 @@
 <template>
+
   <!-- 卡片样式 -->
   <div id="userInfo" style="position: absolute; left: 0px; top: 50px; right: 0px;padding-bottom: 80px">
 
-    <van-cell center title="心动模式">
+<!--    &lt;!&ndash; 上一个按钮next-video-button &ndash;&gt;-->
+<!--    <van-button class="last-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-up" type="primary" @click="getNextUser(-1)"/>-->
+<!--    &lt;!&ndash; 下一个按钮next-video-button &ndash;&gt;-->
+<!--    <van-button class="next-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-down" type="primary" @click="getNextUser(1)"/>-->
+
+
+    <van-cell  center title="匹配与您相似的老司机">
       <template #right-icon>
         <van-switch  v-model="isMatchMode"  />
       </template>
@@ -44,6 +51,13 @@ const router = useRouter();
 const isMatchMode=ref(true);
 const isSkeleton=ref(true);
 
+/**
+ * 下一页
+ */
+const getNextUser =  (num) => {
+  loadData(num);
+}
+
 
 /**
  * 去视频页面
@@ -66,12 +80,18 @@ const userList = ref([]);
 /**
  * 加载元素
  */
-const loadData =(async () => {
+const loadData =(async (pageAdd=0) => {
+
+  let thisPageNum=1+pageAdd
+  if(thisPageNum<1){
+    thisPageNum=1;
+  }
 
   let userListData=[];
   if (isMatchMode.value){
     isSkeleton.value=true;
     console.log("此时为心动模式")
+    //心动个数默认为10个
     const num =10;
      userListData=await myAxios.get('/user/match', {
       params: {
@@ -94,7 +114,7 @@ const loadData =(async () => {
     userListData = await myAxios.get('/user/recommend', {
       params: {
         pageSize: 8,
-        pageNum: 1,
+        pageNum: thisPageNum,
       }
     })
         .then(function (response) {

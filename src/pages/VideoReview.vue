@@ -1,5 +1,11 @@
 <template>
   <!-- 一定要分层注释，让写代码的人更清晰结构，方便改动 -->
+
+  <!-- 上一个按钮next-video-button -->
+  <van-button class="last-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-up" type="primary" @click="getNextUser(-1)"/>
+  <!-- 下一个按钮next-video-button -->
+  <van-button class="next-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-down" type="primary" @click="getNextUser(1)"/>
+
   <!-- 卡片样式 -->
   <div id="userInfo" style="position: absolute; left: 0px; top: 50px; right: 0px;padding-bottom: 80px">
 
@@ -50,6 +56,14 @@ const isMatchMode = ref(true);
 const isSkeleton = ref(true);
 
 /**
+ * 下一页
+ */
+const getNextUser =  (num) => {
+  loadData(num);
+}
+
+
+/**
  * 审核
  */
 
@@ -93,7 +107,12 @@ const userList = ref([]);
 /**
  * 加载元素
  */
-const loadData = (async () => {
+const loadData = (async (pageAdd=0) => {
+
+  let thisPageNum=1+pageAdd
+  if(thisPageNum<1){
+    thisPageNum=1;
+  }
 
   let userListData = [];
   isSkeleton.value = true;
@@ -101,7 +120,7 @@ const loadData = (async () => {
   userListData = await myAxios.get('video/reviewVideo', {
     params: {
       pageSize: 8,
-      pageNum: 1
+      pageNum: thisPageNum
     }
   })
       .then(function (response) {

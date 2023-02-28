@@ -1,4 +1,5 @@
 <template>
+
   <!-- 卡片样式 -->
   <div id="userInfo" style="position: absolute; left: 0px; top: 50px; right: 0px;padding-bottom: 80px">
     <van-card
@@ -23,7 +24,7 @@
 
 <script setup>
 
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {onMounted, ref} from "vue";
 import myAxios from "../plugins/myAxios.js";
 import { showSuccessToast, showFailToast } from 'vant';
@@ -31,8 +32,10 @@ import { showSuccessToast, showFailToast } from 'vant';
 
 //获取路由中的参数
 const route = useRoute();
+const router = useRouter();
 //用户选择的标签，用来筛选合适的用户
 const {tags} = route.query;
+
 
 //用于userList的测试-数据
 // const mockUser = {

@@ -1,7 +1,7 @@
 <template>
 
   <!-- 卡片样式 -->
-  <div id="userInfo" style="position: absolute; left: 0px; top: 50px; right: 0px;padding-bottom: 80px">
+  <div class="userInfo" style="position: absolute; left: 0px; top: 50px; right: 0px;padding-bottom: 80px">
 
     <van-search v-model="searchText" placeholder="搜索队伍" @search="onSearch" />
     <van-tabs v-model:active="active" @change="onTabChange">
@@ -43,6 +43,7 @@
         <van-button  v-if="team.userId === curPerson.id " size="mini" @click="doUpdateTeam(team.id)">更新队伍</van-button>
         <van-button  v-if="team.userId === curPerson.id " type="danger" size="mini" @click="doFilrTeam(team.id)">解散队伍</van-button>
         <van-button  v-if="team.userId != curPerson.id && team.hasJoin" size="mini" @click="doOutTeam(team.id)">退出队伍</van-button>
+        <van-button  size="mini" @click="goVideo(team.id)">精彩视频</van-button>
       </template>
     </van-card>
 
@@ -64,18 +65,6 @@ import {showDialog, showFailToast, showSuccessToast} from "vant";
 import {getCurrentUser} from "../services/user.js";
 const router = useRouter();
 
-// /** （作废的测试用例）
-//  * 点击图片播放视频
-//  */
-// const doVideo=(url)=>{
-//   //跳转
-//   router.push({
-//     path:"/video",
-//     query:{
-//       url:url
-//     }
-//   })
-// }
 
 /**
  * 去视频页面
@@ -95,12 +84,13 @@ const passWordDia = ref(false);
 const passWord=ref("");
 //暂时保存团队的id
 const teamId=ref();
-const doJoin=(id,status)=>{
+const doJoin=(id=0,status=0)=>{
   //如果是公开则直接加入
   if (status===0){
     doJoinTeam(id);
   }else if(status === 2){
     //如果是私密则弹框
+
     passWordDia.value=true;
     teamId.value=id;
   }else {
@@ -187,12 +177,9 @@ const listTeam = async (val = '', status = 0) => {
       pageNum: 1,
       status,
     },
-  });
-  if (res?.code === 0) {
-    userList.value = res.data;
-  } else {
-    showFailToast('加载失败，请刷新重试');
-  }
+  })
+  userList.value = res.data;
+
 }
 
 /**
@@ -200,20 +187,20 @@ const listTeam = async (val = '', status = 0) => {
  * 进行查询
  *
  */
-onMounted( async() => {
-  curPerson.value = await getCurrentUser();
-  await listTeam();
+onMounted( () => {
+  curPerson.value =  getCurrentUser();
+  listTeam();
 })
 
 const searchText = ref('');
-const onSearch = (val) => {
+const onSearch = (val="") => {
   listTeam(val);
 };
 
 /**
  * 加入队伍
  */
-const doJoinTeam= async (id)=>{
+const doJoinTeam= async (id=0)=>{
   const res= await myAxios.post("/team/join",{
    teamId: id,
    password:passWord.value
@@ -225,7 +212,7 @@ const doJoinTeam= async (id)=>{
    await showDialog({
      title: '提示',
      message:
-         `${res.description}`,
+         ``,
    })
    //清空密码
    passWord.value="";
@@ -237,7 +224,7 @@ const doJoinTeam= async (id)=>{
  * doUpdateTeam
  */
 //mission1:点击事件,跳转去队伍team添加页面------------------------------------------------------------------
-const doUpdateTeam=(id)=>{
+const doUpdateTeam=(id=0)=>{
   //跳转
   router.push({
     path:"/team/update",
@@ -252,7 +239,7 @@ const doUpdateTeam=(id)=>{
  * doUpdateTeam
  */
 
-const doFilrTeam=(id)=>{
+const doFilrTeam=(id=0)=>{
   myAxios.post("/team/delete",{
     teamId: id
   });
@@ -267,17 +254,19 @@ const doFilrTeam=(id)=>{
  * 退出队伍
  * doUpdateTeam
  */
-
-const doOutTeam=(id)=>{
-  myAxios.post("/team/quit",{
+const doOutTeam = (id=0) => {
+  myAxios.post("/team/quit", {
     teamId: id
   });
-  if (res?.code === 0){
+
+  if (res.code === 0) {
     showSuccessToast('成功');
-  }else{
+  } else {
     showFailToast('失败');
   }
+
 }
+
 </script>
 
 <style scoped>
