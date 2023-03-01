@@ -28,7 +28,7 @@
         <template #footer>
           <van-button  type="danger" size="mini" @click="reviewVideo(5,user.id)">审核驳回</van-button>
           <van-button  type="success" size="mini" @click="reviewVideo(0,user.id)">审核通过</van-button>
-          <van-button  size="mini" @click="doVideo(user.videoUrl)">查看视频</van-button>
+          <van-button  size="mini" @click="doVideo(user.videoUrl,user.id)">查看视频</van-button>
         </template>
 
       </van-card>
@@ -88,14 +88,15 @@ const quit = () => {
 /**
  * 点击图片播放视频
  */
-const doVideo=(url)=>{
+const doVideo=(url,id)=>{
   const urlList=userList.value;
   //跳转
   router.push({
     path:"/video",
     query:{
       url:url,
-      urlList:JSON.stringify(urlList)
+      urlList:JSON.stringify(urlList),
+      videoId:id
     }
   })
 }

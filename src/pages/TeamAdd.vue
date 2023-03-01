@@ -23,8 +23,8 @@
             is-link
             readonly
             name="datePicker"
-            label="时间选择"
-            placeholder="点击选择时间"
+            label="过期时间"
+            placeholder="点击选择过期时间"
             @click="showPicker = true"
         />
         <van-popup v-model:show="showPicker" position="bottom">
@@ -114,7 +114,7 @@ const onSubmit = async () => {
       replace: true,
     });
   } else {
-    showFailToast('提交失败');
+    showFailToast(res.description);
   }
 }
 </script>

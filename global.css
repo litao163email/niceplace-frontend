@@ -5,6 +5,56 @@
 /**
  * 添加按钮的样式
  */
+/**
+  bottom调整高度
+  right调整右边距离
+  z-index 调整层参数
+ */
+
+
+.user_comment{
+    position: fixed;
+    bottom: 180px;
+    right: 120px;
+    height: 15px;
+    z-index: 10;
+}
+
+
+
+.video-user-image{
+    position: fixed;
+    bottom: 580px;
+    width: 50px;
+    right: 20px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+
+.video-like-icon{
+    position: fixed;
+    bottom: 480px;
+    width: 50px;
+    right: 25px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.video-comment-icon{
+    position: fixed;
+    bottom: 380px;
+    width: 50px;
+    right: 25px;
+    height: 50px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+
+
 .add-button{
     position: fixed;
     bottom: 60px;
@@ -34,3 +84,4 @@
     border-radius: 50%;
     z-index: 10;
 }
+

@@ -209,11 +209,7 @@ const doJoinTeam= async (id=0)=>{
  if (res.code === 0){
    showSuccessToast(res.description);
  }else{
-   await showDialog({
-     title: '提示',
-     message:
-         ``,
-   })
+   showFailToast(res.description);
    //清空密码
    passWord.value="";
  }
@@ -246,7 +242,7 @@ const doFilrTeam=(id=0)=>{
   if (res?.code === 0){
     showSuccessToast('成功');
   }else{
-    showFailToast('失败');
+    showFailToast(res.description);
   }
 }
 
@@ -262,7 +258,7 @@ const doOutTeam = (id=0) => {
   if (res.code === 0) {
     showSuccessToast('成功');
   } else {
-    showFailToast('失败');
+    showFailToast(res.description);
   }
 
 }

@@ -106,7 +106,7 @@ const listTeam = async (val = '', status = 0) => {
   if (res?.code === 0) {
     userList.value = res.data;
   } else {
-    showFailToast('加载失败，请刷新重试');
+    showFailToast(res.description);
   }
 }
 

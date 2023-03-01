@@ -26,14 +26,20 @@
 
         <!--   查看按钮     -->
         <template #footer>
+          <!--   非审核时,视频处于下架时可见    -->
           <van-button  v-if="user.status===1 && user.status!==4" type="success" size="mini" @click="reviewVideo(0,user.id)">上架</van-button>
+          <!--   非审核时,视频处于上架时可见    -->
           <van-button  v-if="user.status===0 && user.status!==4" type="danger" size="mini" @click="reviewVideo(1,user.id)">下架</van-button>
-          <van-button  v-if="user.status!==4" type="warning" size="mini" @click="reviewVideo(2,user.id)">仅自己可见</van-button>
-          <!--   非审核时,视频是不是加密则显示加密    -->
+
+          <!--   非审核时,且视频处于公开状态，则显示仅自己可见    -->
+          <van-button  v-if="user.status!==4 && user.status ===0" type="warning" size="mini" @click="reviewVideo(2,user.id)">仅自己可见</van-button>
+          <!--   非审核时,视频且处于不可见状态，则显示设置大家可见    -->
+          <van-button  v-if="user.status !==4 && user.status===2" type="warning" size="mini" @click="reviewVideo(0,user.id)">设大家可见</van-button>
+          <!--   非审核时,视频是不加密则显示加密    -->
           <van-button  v-if="user.status !==3 && user.status!==4" type="primary" size="mini" @click="reviewVideo(3,user.id)">加密</van-button>
           <!--   非审核时,视频是加密时显示解密       -->
           <van-button  v-if="user.status===3 && user.status!==4" type="primary" size="mini" @click="reviewVideo(0,user.id)">解密</van-button>
-          <van-button size="mini" @click="doVideo(user.videoUrl)">查看视频</van-button>
+          <van-button size="mini" @click="doVideo(user.videoUrl,user.id)">查看视频</van-button>
           <van-button  v-if="user.status===4"  size="mini" >审核中</van-button>
 
         </template>
@@ -94,14 +100,15 @@ const quit = () => {
 /**
  * 点击图片播放视频
  */
-const doVideo=(url)=>{
+const doVideo=(url,id)=>{
   const urlList=userList.value;
   //跳转
   router.push({
     path:"/video",
     query:{
       url:url,
-      urlList:JSON.stringify(urlList)
+      urlList:JSON.stringify(urlList),
+      videoId:id
     }
   })
 }

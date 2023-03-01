@@ -114,7 +114,7 @@ const onSubmit = async () => {
       replace: true,
     });
   } else {
-    showFailToast('提交失败');
+    showFailToast(res.description);
   }
 }
 </script>

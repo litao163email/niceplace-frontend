@@ -8,6 +8,10 @@
 <!--    &lt;!&ndash; 下一个按钮next-video-button &ndash;&gt;-->
 <!--    <van-button class="next-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-down" type="primary" @click="getNextUser(1)"/>-->
 
+    <van-notice-bar
+        left-icon="volume-o" @click="goEdit"
+        text="右上角搜索栏查看'标签',在个人信息编辑页输入标签,可获取'精准'的老司机推送!  (点击去编辑)"
+    />
 
     <van-cell  center title="匹配与您相似的老司机">
       <template #right-icon>
@@ -50,6 +54,13 @@ const router = useRouter();
 
 const isMatchMode=ref(true);
 const isSkeleton=ref(true);
+
+/**
+ * 滚动条跳转去编辑页
+ */
+const goEdit=()=>{
+  router.push("/user/UserUpdate")
+}
 
 /**
  * 下一页
