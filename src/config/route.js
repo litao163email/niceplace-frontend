@@ -18,12 +18,14 @@ import UserVideoManage from "../pages/UserVideoManage.vue";
 import VideoUpLoad from "../pages/VideoUpLoad.vue";
 import VideoReview from "../pages/VideoReview.vue";
 import VideoCommentResult from "../pages/VideoCommentResult.vue";
+import VideoNews from "../pages/VideoNews.vue";
 
 const routes = [
     { path: '/team', title:'团队列表',component: Team },
     { path: '/team/add',title:'添加团队', component:TeamAdd },
     { path: '/team/update',title:'更新团队', component:TeamUpdate },
     { path: '/video', title:'视频',component: Video },
+    { path: '/videoNews', title:'好看不重复',component: VideoNews },
     { path: '/videoResult', title:'主页视频',component: VideoResult },
     { path: '/', title:'视频达人',component: Index },
     { path: '/user',title:'个人', component: User },

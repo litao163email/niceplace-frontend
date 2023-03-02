@@ -20,6 +20,7 @@
 
 <!-- 引入下面标签组件-->
   <van-tabbar route @onChange="onChange">
+    <van-tabbar-item to="/videoNews" icon="home-o" name="videoNews">好看不重复</van-tabbar-item>
     <van-tabbar-item to="/" icon="home-o" name="index">匹配</van-tabbar-item>
     <van-tabbar-item to="/team" icon="search" name="team">老司机们</van-tabbar-item>
     <van-tabbar-item to="/user" icon="friends-o" name="user">个人/视频管理</van-tabbar-item>
