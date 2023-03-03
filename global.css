@@ -11,7 +11,7 @@
   z-index 调整层参数
  */
 
-
+/*视频用户评论*/
 .user_comment{
     position: fixed;
     bottom: 180px;
@@ -21,33 +21,34 @@
 }
 
 
-
+/*视频用户图片*/
 .video-user-image{
     position: fixed;
     bottom: 580px;
     width: 50px;
-    right: 20px;
+    right: 40px;
     height: 50px;
     border-radius: 50%;
     z-index: 10;
 }
 
-
+/*视频评论 */
 .video-like-icon{
     position: fixed;
     bottom: 480px;
     width: 50px;
-    right: 25px;
+    right: 40px;
     height: 50px;
     border-radius: 50%;
     z-index: 10;
 }
 
+/*评论按钮*/
 .video-comment-icon{
     position: fixed;
     bottom: 380px;
     width: 50px;
-    right: 25px;
+    right: 40px;
     height: 50px;
     border-radius: 50%;
     z-index: 10;
@@ -59,27 +60,29 @@
     position: fixed;
     bottom: 60px;
     width: 50px;
-    right: 12px;
+    right: 40px;
     height: 50px;
     border-radius: 50%;
     z-index: 5;
 }
 
+/*下按钮*/
 .next-video-button{
     position: fixed;
     bottom: 180px;
     width: 50px;
-    right: 20px;
+    right: 40px;
     height: 50px;
     border-radius: 50%;
     z-index: 10;
  }
 
+/*上按钮*/
 .last-video-button{
     position: fixed;
     bottom: 250px;
     width: 50px;
-    right: 20px;
+    right: 40px;
     height: 50px;
     border-radius: 50%;
     z-index: 10;

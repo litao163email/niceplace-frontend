@@ -1,4 +1,5 @@
 <template>
+  <div style="padding: 1px;">
   <!-- 上一个按钮next-video-button -->
   <van-button class="last-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-up" type="primary" @click="getNextUser(-1)"/>
   <!-- 下一个按钮next-video-button -->
@@ -13,18 +14,20 @@
       @click="goToUserPage"
   />
   <!-- 点赞前 -->
-  <van-icon class="video-like-icon" v-if="!ikeModel" color="#ee0a24" size="55" type="primary" name="like-o" @click="doLike"/>
+  <van-icon class="video-like-icon" v-if="!ikeModel" color="#ee0a24" size="45" type="primary" name="like-o" @click="doLike"/>
 
   <!-- 点赞后 -->
-  <van-icon class="video-like-icon" v-if="ikeModel" color="#ee0a24" size="55" type="primary" name="like" @click="doLike" />
+  <van-icon class="video-like-icon" v-if="ikeModel" color="#ee0a24" size="45" type="primary" name="like" @click="doLike" />
 
   <!-- 评论 -->
   <van-icon class="video-comment-icon" color="#ee0a24" size="55" name="chat" badge="热评" @click="getComment()"/>
+
   <!-- 退出按钮 -->
   <van-button class="add-button" color="linear-gradient(to right, #fffaf0, #bc8f8f)" icon="arrow-left" type="primary" @click="quit"/>
-  <div >
+
     <!--  视频播放  -->
-    <video ref="videoPlayer" :src="videoingUrl" controls  preload="auto" autoplay loop></video>
+  <video ref="videoPlayer" :src="videoingUrl" width="365" height="600"  controls  preload="auto" autoplay poster loop></video>
+
   </div>
 </template>
 

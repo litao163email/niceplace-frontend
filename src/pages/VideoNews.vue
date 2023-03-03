@@ -48,7 +48,7 @@ const behavior = (id) => {
       id: id
     }
   });
-  console.log("布隆过滤器埋点入参id:" + videoIngId.value);
+  console.log("布隆过滤器埋点入参id:" + id);
 }
 
 
@@ -232,9 +232,12 @@ const getNextUser = (one) => {
 
 /**
  * video地址
+ * 在启动的时候对布隆过滤器进行注册,videoId传参是-1
  */
-onMounted(async () => {
-  await loadData();
+onMounted( () => {
+  //在视频页启动的时候对用户的布隆过滤器进行注册,videoId传参是-1
+   behavior(-1);
+   loadData();
 })
 
 

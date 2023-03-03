@@ -1,6 +1,5 @@
 <template>
   <!-- 引入最上面的组件-->
-  <div class="nav-var" style="position: absolute;left: 0px;top: 0px;right: 0px;">
   <van-nav-bar
       :title="title"
       right-text="按钮"
@@ -13,11 +12,9 @@
       <van-icon name="search" size="18" />
     </template>
   </van-nav-bar>
-  </div>
 
-<!--  表示有路由引入-->
+  <!--  表示有路由引入-->
   <router-view />
-
 <!-- 引入下面标签组件-->
   <van-tabbar route @onChange="onChange">
     <van-tabbar-item to="/videoNews" icon="home-o" name="videoNews">好看不重复</van-tabbar-item>
