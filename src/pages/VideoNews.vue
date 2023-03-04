@@ -24,7 +24,7 @@
   <van-button class="add-button" color="linear-gradient(to right, #fffaf0, #bc8f8f)" icon="arrow-left" type="primary" @click="quit"/>
   <div >
     <!--  视频播放  -->
-    <video ref="videoPlayer" :src="videoingUrl" controls  preload="auto" autoplay loop></video>
+    <video ref="videoPlayer" :src="videoingUrl" width="365" height="600" controls  preload="auto" autoplay loop></video>
   </div>
 </template>
 
@@ -37,17 +37,24 @@ import myAxios from "../plugins/myAxios.js";
 const router = useRouter();
 const route = useRoute();
 
+
 /**
  * 布隆过滤器埋点
  */
-//布隆过滤器埋点,防止看过的视频重复推荐
 
+const startTime = ref();
+const endTime =ref();
+//布隆过滤器埋点,防止看过的视频重复推荐
 const behavior = (id) => {
+  console.log("您在本视频的观看市场:" + startTime.value);
+  console.log("您在本视频的观看市场:" + endTime.value);
   myAxios.get('/behavior/recordUserWatchVideoId', {
     params: {
-      id: id
+      id: id,
+      watchTime:endTime.value-startTime.value,
     }
   });
+  console.log("您在本视频的观看市场:" + endTime.value-startTime.value);
   console.log("布隆过滤器埋点入参id:" + id);
 }
 
@@ -189,8 +196,11 @@ const getNextUser = (one) => {
 
       console.log("此时的videoingUrl:"+videoingUrl.value);
       console.log("此时的videoIngId:"+videoIngId.value);
+
+      endTime.value=new Date().getTime();
       //布隆过滤器埋点
       behavior(videoIngId.value);
+      startTime.value=new Date().getTime();
 
       userId.value=urlList[currentIndex].user.id;
       console.log("当前用户id:"+urlList[currentIndex].user.id);
@@ -211,10 +221,10 @@ const getNextUser = (one) => {
     ikeModel.value=false;
   }else {
     showToast({
-      message: '此为最后一个视频,将重新播放',
+      message: '看过的视频永远不会再出现,正在更新视频中!',
       position: 'top',
     });
-    console.log("此为最后一个视频,将重新播放");
+    console.log("此为最后一个视频,您已经看完所有最新视频");
 
     if(currentIndex===-1){
       //如果等于-1，则跳去最后一个
@@ -223,6 +233,7 @@ const getNextUser = (one) => {
       //如果等于最后一个，则跳去第一个
       currentIndex=-1;
     }
+
     //刷新点赞
     ikeModel.value=false;
 
@@ -236,8 +247,11 @@ const getNextUser = (one) => {
  */
 onMounted( () => {
   //在视频页启动的时候对用户的布隆过滤器进行注册,videoId传参是-1
+  startTime.value=new Date().getTime();
+  endTime.value=new Date().getTime();
    behavior(-1);
    loadData();
+
 })
 
 

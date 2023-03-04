@@ -132,7 +132,8 @@ const loadData = (async (pageAdd=0) => {
 
   let userListData = [];
   isSkeleton.value = true;
-  console.log("此时为视频模式")
+  console.log("此时为视频模式teamId："+route.query.teamId)
+  console.log("此时为视频模式id"+route.query.id)
   userListData = await myAxios.get('/video/getVideoList', {
     params: {
       pageSize: 6,

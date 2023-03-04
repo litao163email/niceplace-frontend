@@ -26,7 +26,9 @@
   <van-button class="add-button" color="linear-gradient(to right, #fffaf0, #bc8f8f)" icon="arrow-left" type="primary" @click="quit"/>
 
     <!--  视频播放  -->
-  <video ref="videoPlayer" :src="videoingUrl" width="365" height="600"  controls  preload="auto" autoplay poster loop></video>
+  <video ref="videoPlayer" :src="videoingUrl" width="365" height="600"
+         controls  preload="auto"  webkit-playsinline="true"
+         autoplay poster loop></video>
 
   </div>
 </template>

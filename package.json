@@ -12,6 +12,10 @@
     "axios": "^1.2.1",
     "qs": "^6.11.0",
     "vant": "^4.0.2",
+    "video.js": "^8.0.4",
+    "videojs-contrib-hls": "^5.15.0",
+    "videojs-flash": "^2.2.1",
+    "videojs-flvjs-es6": "^1.0.1",
     "vue": "^3.2.45",
     "vue-router": "4"
   },

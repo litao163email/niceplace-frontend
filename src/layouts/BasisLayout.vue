@@ -1,17 +1,19 @@
 <template>
   <!-- 引入最上面的组件-->
-  <van-nav-bar
-      :title="title"
-      right-text="按钮"
-      left-arrow
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
-  >
-    <!--插槽-->
-    <template #right>
-      <van-icon name="search" size="18" />
-    </template>
-  </van-nav-bar>
+  <div class="van-search-index">
+    <van-nav-bar
+        :title="title"
+        right-text="按钮"
+        left-arrow
+        @click-left="onClickLeft"
+        @click-right="onClickRight"
+    >
+      <!--插槽-->
+      <template #right>
+        <van-icon name="search" size="18" />
+      </template>
+    </van-nav-bar>
+  </div>
 
   <!--  表示有路由引入-->
   <router-view />

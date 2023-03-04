@@ -2,9 +2,12 @@
   <!-- 一定要分层注释，让写代码的人更清晰结构，方便改动 -->
 
   <!-- 上一个按钮next-video-button -->
-  <van-button class="last-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-up" type="primary" @click="getNextUser(-1)"/>
+  <!-- 上一个按钮next-video-button -->
+  <van-button class="last-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-up"
+              type="primary" @click="getNextUser(-1)"/>
   <!-- 下一个按钮next-video-button -->
-  <van-button class="next-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-down" type="primary" @click="getNextUser(1)"/>
+  <van-button class="next-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-down"
+              type="primary" @click="getNextUser(1)"/>
 
   <!-- 卡片样式 -->
   <div id="userInfo" style="position: absolute; left: 0px; top: 50px; right: 0px;padding-bottom: 80px">
@@ -27,18 +30,18 @@
         <!--   查看按钮     -->
         <template #footer>
           <!--   非审核时,视频处于下架时可见    -->
-          <van-button  v-if="user.status===1 && user.status!==4" type="success" size="mini" @click="reviewVideo(0,user.id)">上架</van-button>
+          <van-button  v-if="user.status===1 && user.status!==4" type="success" size="mini" @click="reviewVideo(0,user.id,)">上架</van-button>
           <!--   非审核时,视频处于上架时可见    -->
-          <van-button  v-if="user.status===0 && user.status!==4" type="danger" size="mini" @click="reviewVideo(1,user.id)">下架</van-button>
+          <van-button  v-if="user.status===0 && user.status!==4" type="danger" size="mini" @click="reviewVideo(1,user.id,)">下架</van-button>
 
           <!--   非审核时,且视频处于公开状态，则显示仅自己可见    -->
-          <van-button  v-if="user.status!==4 && user.status ===0" type="warning" size="mini" @click="reviewVideo(2,user.id)">仅自己可见</van-button>
+          <van-button  v-if="user.status!==4 && user.status ===0" type="warning" size="mini" @click="reviewVideo(2,user.id,)">仅自己可见</van-button>
           <!--   非审核时,视频且处于不可见状态，则显示设置大家可见    -->
-          <van-button  v-if="user.status !==4 && user.status===2" type="warning" size="mini" @click="reviewVideo(0,user.id)">设大家可见</van-button>
+          <van-button  v-if="user.status !==4 && user.status===2" type="warning" size="mini" @click="reviewVideo(0,user.id,)">设大家可见</van-button>
           <!--   非审核时,视频是不加密则显示加密    -->
-          <van-button  v-if="user.status !==3 && user.status!==4" type="primary" size="mini" @click="reviewVideo(3,user.id)">加密</van-button>
+          <van-button  v-if="user.status !==3 && user.status!==4" type="primary" size="mini" @click="reviewVideo(3,user.id,)">加密</van-button>
           <!--   非审核时,视频是加密时显示解密       -->
-          <van-button  v-if="user.status===3 && user.status!==4" type="primary" size="mini" @click="reviewVideo(0,user.id)">解密</van-button>
+          <van-button  v-if="user.status===3 && user.status!==4" type="primary" size="mini" @click="reviewVideo(0,user.id,)">解密</van-button>
           <van-button size="mini" @click="doVideo(user.videoUrl,user.id)">查看视频</van-button>
           <van-button  v-if="user.status===4"  size="mini" >审核中</van-button>
 
@@ -120,6 +123,7 @@ const userList = ref([]);
 /**
  * 加载元素
  */
+
 const loadData = (async (pageAdd=0) => {
 
   let thisPageNum=1+pageAdd

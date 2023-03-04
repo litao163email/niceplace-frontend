@@ -2,10 +2,11 @@
   <!-- 一定要分层注释，让写代码的人更清晰结构，方便改动 -->
 
   <!-- 上一个按钮next-video-button -->
-  <van-button class="last-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-up" type="primary" @click="getNextUser(-1)"/>
+  <van-button class="last-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-up"
+              type="primary" @click="getNextUser(-1)"/>
   <!-- 下一个按钮next-video-button -->
-  <van-button class="next-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-down" type="primary" @click="getNextUser(1)"/>
-
+  <van-button class="next-video-button" color="linear-gradient(to right, #ff6034, #ee0a24)" icon="arrow-down"
+              type="primary" @click="getNextUser(1)"/>
   <!-- 卡片样式 -->
   <div id="userInfo" style="position: absolute; left: 0px; top: 50px; right: 0px;padding-bottom: 80px">
 
@@ -26,9 +27,10 @@
 
         <!--   查看按钮     -->
         <template #footer>
-          <van-button  type="danger" size="mini" @click="reviewVideo(5,user.id)">审核驳回</van-button>
-          <van-button  type="success" size="mini" @click="reviewVideo(0,user.id)">审核通过</van-button>
+          <van-button  type="danger" size="mini" @click="reviewVideo(5,user.id,null)">审核驳回</van-button>
+          <van-button  type="success" size="mini" @click="reviewVideo(0,user.id,null)">审核通过</van-button>
           <van-button  size="mini" @click="doVideo(user.videoUrl,user.id)">查看视频</van-button>
+          <van-button  type="primary" size="mini" @click="reviewVideo(0,user.id,5)">选为优质</van-button>
         </template>
 
       </van-card>
@@ -67,10 +69,11 @@ const getNextUser =  (num) => {
  * 审核
  */
 
-const reviewVideo = async (status,videoId) => {
+const reviewVideo = async (status,videoId,videoTypeCode) => {
   const res = myAxios.post("/video/updateVideoStatus", {
       id: videoId,
       status: status,
+    videoTypeCode:videoTypeCode
   });
   await showSuccessToast('审批成功');
   loadData();
@@ -108,12 +111,17 @@ const userList = ref([]);
 /**
  * 加载元素
  */
+
+let thisPageNum =1;
 const loadData = (async (pageAdd=0) => {
 
-  let thisPageNum=1+pageAdd
-  if(thisPageNum<1){
-    thisPageNum=1;
+  thisPageNum = thisPageNum + pageAdd
+  if (thisPageNum < 1) {
+    thisPageNum = 1;
   }
+
+  console.log("555："+thisPageNum)
+  console.log("555："+pageAdd)
 
   let userListData = [];
   isSkeleton.value = true;
