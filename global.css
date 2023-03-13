@@ -26,9 +26,10 @@
  */
 .van-search-index{
     position: fixed;
-    width: 350px;
-    top: 13px;
-    right: 20px;
+    width: auto;
+    top: 9px;
+    right: 5px;
+    left:5px;
     z-index: 10;
 }
 
@@ -53,7 +54,7 @@
 /*视频用户图片*/
 .video-user-image{
     position: fixed;
-    bottom: 480px;
+    bottom: 450px;
     width: 50px;
     right: 40px;
     height: 250px;
