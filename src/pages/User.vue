@@ -92,7 +92,7 @@ const videoUpLoad=()=>{
   showConfirmDialog({
     title: '提示',
     message:
-        '为保证互联网传播安全,本项目已禁止上传,仅作演示学习，有问题请邮件联系:litao163email@163.com',
+        '为保证互联网传播安全,本项目已禁止上传,仅作演示学习，有问题请邮件联系:litao',
   })
       .then(() => {
         router.push("/");

@@ -7,7 +7,7 @@ clone本项目可以直接运行看效果：
 1、控制台：npm install
 2、点击文件： package.json -> "scripts" -> "dev" > 启动
 
-有兴趣请邮箱联系:litao163email@163.com
+有兴趣请邮箱联系:litao
 
 
 English:
@@ -18,4 +18,4 @@ clone This project can be run directly to see the effect:
 1. Console: npm install
 2. Click package.json -> "scripts" -> "dev" > Start
 
-If interested, please contact litao163email@163.com
+If interested, please contact litao
